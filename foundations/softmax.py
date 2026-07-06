@@ -3,12 +3,9 @@ from numpy.typing import NDArray
 
 
 class Solution:
-    
-    def sigmoid(self, z: NDArray[np.float64]) -> NDArray[np.float64]:
-        
-        x =  1 / (1 + np.exp(-z))
-        return np.round(x, 5)
-       
 
-    def relu(self, z: NDArray[np.float64]) -> NDArray[np.float64]:
-       return np.maximum(0,z)
+    def softmax(self, z: NDArray[np.float64]) -> NDArray[np.float64]:
+        shifted = z - np.max(z)
+        exps = np.exp(shifted)
+        return np.round(exps/np.sum(exps) , 4)
+        
